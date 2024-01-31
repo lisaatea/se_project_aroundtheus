@@ -13,8 +13,7 @@ This is the third project of the Software Engineering program at TripleTen. It w
 
 ## Links
 
-[GitHub pages](https://lisaatea.github.io/se_project_aroundtheus/)  
-[Project presentation video](https://drive.google.com/file/d/1BXypLRcyKrLLLMDq8SBUU74dLyl-ze7T/view?usp=drive_link)
+[GitHub pages](https://lisaatea.github.io/se_project_aroundtheus/)
 
 ## Project updates
 

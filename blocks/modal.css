@@ -38,6 +38,11 @@
   padding: 0;
 }
 
+.modal__close-button:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
 .modal__heading {
   font-family: "Inter", Arial, sans-serif;
   font-weight: 900;
@@ -97,9 +102,13 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 1.2;
-  cursor: pointer;
   padding: 0;
   margin-top: 48px;
+}
+
+.modal__save-button:hover {
+  opacity: 0.8;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 620px) {

@@ -30,6 +30,7 @@
             <button
               type="button"
               class="profile__edit-button"
+              id="profile-edit-button"
               aria-label="edit profile"
             ></button>
             <p class="profile__description">Explorer</p>
@@ -139,9 +140,9 @@
         <p class="footer__text">© 2022 Around The U.S.</p>
       </footer>
     </div>
-    <div class="modal">
+    <div class="modal" id="profile-edit-modal">
       <div class="modal__container">
-        <button class="modal__close-button"></button>
+        <button class="modal__close-button" id="profile-close-modal"></button>
         <p class="modal__heading">Edit profile</p>
         <form class="modal__form">
           <input

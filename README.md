@@ -1,6 +1,6 @@
 # Around the U.S.
 
-This is the third project of the Software Engineering program at TripleTen. It was created using HTML and CSS, working from Figma design specifications for mobile and desktop layouts.
+This is the third project of the Software Engineering program at TripleTen. It was created using HTML, CSS, and Javascript, working from Figma design specifications for mobile and desktop layouts.
 
 ## Project features
 
@@ -8,6 +8,7 @@ This is the third project of the Software Engineering program at TripleTen. It w
 - Flexbox
 - Responsive Design
 - Media Queries
+- Responsive Modal
 
 ![project demo image](./images/demo/aroundtheus-demo.jpg)
 
@@ -17,4 +18,4 @@ This is the third project of the Software Engineering program at TripleTen. It w
 
 ## Project updates
 
-This page will be used in future projects, incorporating Javascript learnings to make it interactive.
+This page will be built upon in future projects, incorporating Javascript learnings to increase functionality.

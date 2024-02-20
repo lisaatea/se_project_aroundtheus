@@ -25,6 +25,8 @@
   margin: auto;
   border-radius: 10px;
   max-width: 430px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .modal__container_type_image {
@@ -72,7 +74,7 @@
 }
 
 .modal__input {
-  width: 358px;
+  width: 100%;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   font-family: "Inter", Arial, sans-serif;
@@ -154,10 +156,6 @@
   .modal__title {
     font-size: 18px;
     margin-bottom: 75px;
-  }
-
-  .modal__input {
-    width: 238px;
   }
 
   .modal__save-button {

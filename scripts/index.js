@@ -75,6 +75,7 @@ function getCardElement(cardData) {
 
   cardImageElement.addEventListener("click", () => {
     modalImageElement.src = cardData.link;
+    modalImageElement.alt = "image of ${cardData.name}";
     modalCaption.textContent = cardData.name;
     openModal(imageModal);
   });

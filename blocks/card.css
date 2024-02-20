@@ -3,11 +3,30 @@
   flex-direction: column;
   border-radius: 10px;
   overflow: hidden;
+  position: relative;
 }
 
 .card__image {
   width: 282px;
   height: 282px;
+}
+
+.card__delete-button {
+  position: absolute;
+  top: 18px;
+  right: 15px;
+  background: transparent;
+  background-image: url(../images/delete.svg);
+  border: 0;
+  width: 18px;
+  height: 19px;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.card__delete-button:hover {
+  opacity: 0.6;
 }
 
 .card__description {
@@ -40,6 +59,10 @@
   height: 18px;
   padding: 0;
   border-style: none;
+}
+
+.card__like-button_active {
+  background-image: url(../images/like-active.svg);
 }
 
 .card__like-button:hover {

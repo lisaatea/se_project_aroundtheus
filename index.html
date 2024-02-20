@@ -40,7 +40,7 @@
           <button
             type="button"
             class="profile__add-button"
-            aria-label="add profile"
+            aria-label="add profile card"
           ></button>
         </section>
         <section class="cards page__section">
@@ -78,9 +78,53 @@
         </form>
       </div>
     </div>
+    <div class="modal" id="add-card-modal">
+      <div class="modal__container">
+        <button
+          type="button"
+          class="modal__close-button"
+          id="card-close-modal"
+        ></button>
+        <h2 class="modal__title">New place</h2>
+        <form class="modal__form" name="modalForm">
+          <input
+            type="text"
+            class="modal__input"
+            id="card-title-input"
+            name="title"
+            placeholder="Title"
+          />
+          <input
+            type="url"
+            class="modal__input"
+            id="card-image-input"
+            name="url"
+            placeholder="Image link"
+          />
+          <button type="submit" class="modal__save-button">Create</button>
+        </form>
+      </div>
+    </div>
+    <div class="modal modal_type_image" id="image-preview">
+      <div class="modal__container modal__container_type_image">
+        <button
+          type="button"
+          class="modal__close-button modal__close-button_type_image"
+          id="image-close-modal"
+        ></button>
+        <img class="modal__image" src="" alt="" />
+        <p class="modal__caption"></p>
+      </div>
+    </div>
     <template id="card-template">
       <li class="card">
         <img class="card__image" src="" alt="" />
+        <button
+          type="button"
+          class="card__delete-button"
+          id="card-delete-button"
+          aria-label="delete card"
+        ></button>
         <div class="card__description">
           <h2 class="card__title"></h2>
           <button

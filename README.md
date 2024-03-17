@@ -9,6 +9,7 @@ This is the third project of the Software Engineering program at TripleTen. It w
 - Responsive Design
 - Media Queries
 - Responsive Modal
+- Form Validation
 
 ![project demo image](./images/demo/aroundtheus-demo.jpg)
 
@@ -18,4 +19,4 @@ This is the third project of the Software Engineering program at TripleTen. It w
 
 ## Project updates
 
-This page will be built upon in future projects, incorporating Javascript learnings to increase functionality.
+This page will be built upon in future projects, incorporating course learnings to increase functionality.

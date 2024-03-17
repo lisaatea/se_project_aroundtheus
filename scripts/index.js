@@ -52,10 +52,28 @@ const modalCaption = imageModal.querySelector(".modal__caption");
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
+  document.addEventListener("keydown", closeModalEscape);
+  document.addEventListener("click", closeModalOverlay);
 }
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
+  document.removeEventListener("keydown", closeModalEscape);
+  document.removeEventListener("click", closeModalOverlay);
+}
+
+function closeModalEscape(e) {
+  if (e.key === "Escape") {
+    const modalOpened = document.querySelector(".modal_opened");
+    closeModal(modalOpened);
+  }
+}
+
+function closeModalOverlay(e) {
+  if (e.target.classList.contains("modal")) {
+    const modalOpened = document.querySelector(".modal_opened");
+    closeModal(modalOpened);
+  }
 }
 
 function getCardElement(cardData) {

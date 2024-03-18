@@ -71,8 +71,7 @@ function closeModalEscape(e) {
 
 function closeModalOverlay(e) {
   if (e.target.classList.contains("modal")) {
-    const modalOpened = document.querySelector(".modal_opened");
-    closeModal(modalOpened);
+    closeModal(e.target);
   }
 }
 
@@ -117,6 +116,7 @@ function handleAddCardSubmit(e) {
   const name = cardTitleInput.value;
   const link = cardImageInput.value;
   renderCard({ name, link }, cardListElement);
+  e.target.reset();
   closeModal(addCardModal);
 }
 

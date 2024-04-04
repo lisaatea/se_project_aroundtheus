@@ -1,3 +1,6 @@
+import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
+
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -36,8 +39,6 @@ const profileDescriptionInput = document.querySelector(
 );
 const profileEditForm = profileEditModal.querySelector(".modal__form");
 const cardListElement = document.querySelector(".cards__list");
-const cardTemplate =
-  document.querySelector("#card-template").content.firstElementChild;
 
 const addNewCardButton = document.querySelector(".profile__add-button");
 const addCardModal = document.querySelector("#add-card-modal");
@@ -75,33 +76,12 @@ function closeModalOverlay(e) {
   }
 }
 
-function getCardElement(cardData) {
-  const cardElement = cardTemplate.cloneNode(true);
-  const cardImageElement = cardElement.querySelector(".card__image");
-  const cardTitleElement = cardElement.querySelector(".card__title");
-  const likeButton = cardElement.querySelector(".card__like-button");
-  const deleteButton = cardElement.querySelector(".card__delete-button");
-
-  cardTitleElement.textContent = cardData.name;
-  cardImageElement.src = cardData.link;
-  cardImageElement.alt = cardData.name;
-
-  likeButton.addEventListener("click", () => {
-    likeButton.classList.toggle("card__like-button_active");
-  });
-
-  cardImageElement.addEventListener("click", () => {
-    modalImageElement.src = cardData.link;
-    modalImageElement.alt = `image of ${cardData.name}`;
-    modalCaption.textContent = cardData.name;
-    openModal(imageModal);
-  });
-
-  deleteButton.addEventListener("click", () => {
-    cardElement.remove();
-  });
-
-  return cardElement;
+//Sprint 7
+function handleImageClick() {
+  modalImageElement.src = this._link;
+  modalImageElement.alt = `image of ${this._name}`;
+  modalCaption.textContent = this._name;
+  openModal(imageModal);
 }
 
 function handleProfileEditSubmit(e) {
@@ -118,11 +98,6 @@ function handleAddCardSubmit(e) {
   renderCard({ name, link }, cardListElement);
   e.target.reset();
   closeModal(addCardModal);
-}
-
-function renderCard(cardData, wrapper) {
-  const cardElement = getCardElement(cardData);
-  wrapper.prepend(cardElement);
 }
 
 profileEditButton.addEventListener("click", () => {
@@ -151,4 +126,12 @@ imageCloseModal.addEventListener("click", () => {
   closeModal(imageModal);
 });
 
-initialCards.forEach((cardData) => renderCard(cardData, cardListElement));
+//Sprint 7
+const cardSelector = "#card-template";
+
+const renderCard = (data, wrapper) => {
+  const card = new Card(data, cardSelector, handleImageClick);
+  wrapper.prepend(card.getView());
+};
+
+initialCards.forEach((data) => renderCard(data, cardListElement));

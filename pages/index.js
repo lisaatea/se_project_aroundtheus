@@ -90,7 +90,7 @@ function handleAddCardSubmit(e) {
   renderCard({ name, link }, cardListElement);
   e.target.reset();
   closeModal(addCardModal);
-  addFormValidator._toggleButtonState();
+  addFormValidator.toggleButtonState();
 }
 
 profileEditButton.addEventListener("click", () => {

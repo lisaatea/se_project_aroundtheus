@@ -37,6 +37,7 @@ class Card {
 
   _handleDeleteButton() {
     this._element.remove();
+    this._element = null;
   }
 
   getView() {

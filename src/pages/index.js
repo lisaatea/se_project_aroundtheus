@@ -15,6 +15,10 @@ import {
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
 const profileTitle = document.querySelector("#profile-title");
+const profileTitleInput = document.querySelector("#profile-title-input");
+const profileDescriptionInput = document.querySelector(
+  "#profile-description-input"
+);
 const profileDescription = document.querySelector("#profile-description");
 const profileEditForm = profileEditModal.querySelector(".modal__form");
 const addNewCardButton = document.querySelector(".profile__add-button");
@@ -27,19 +31,31 @@ addNewCardButton.addEventListener("click", () => {
 });
 
 profileEditButton.addEventListener("click", () => {
+  const userData = userInfo.getUserInfo();
+  profileTitleInput.value = userData.name;
+  profileDescriptionInput.value = userData.description;
   editProfilePopup.open();
 });
 
+const renderCard = (cardData) => {
+  const cardElement = new Card(
+    cardData,
+    selectors.cardTemplate,
+    handleImageClick
+  );
+  cardSection.addItem(cardElement.getView());
+};
+
 function handleAddCardSubmit(data) {
-  const cardAdd = new Card(data, selectors.cardTemplate, handleImageClick);
-  cardSection.addItem(cardAdd.getView());
-  addFormValidator.toggleButtonState();
+  renderCard(data);
   addCardPopup.close();
+  addFormValidator.toggleButtonState();
 }
 
 function handleEditProfileSubmit(data) {
   userInfo.setUserInfo(data);
   editProfilePopup.close();
+  editFormValidator.toggleButtonState();
 }
 
 function handleImageClick(name, link) {
@@ -48,14 +64,7 @@ function handleImageClick(name, link) {
 
 const cardSection = new Section(
   {
-    renderer: (cardData) => {
-      const cardElement = new Card(
-        cardData,
-        selectors.cardTemplate,
-        handleImageClick
-      );
-      cardSection.addItem(cardElement.getView());
-    },
+    renderer: renderCard,
     items: initialCards,
   },
   selectors.cardSection

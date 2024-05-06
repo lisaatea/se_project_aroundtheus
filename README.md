@@ -11,7 +11,7 @@ This is the third project of the Software Engineering program at TripleTen. It w
 - Responsive Modal
 - Form Validation
 
-![project demo image](./images/demo/aroundtheus-demo.jpg)
+![project demo image](./src/images/demo/aroundtheus-demo.jpg)
 
 ## Links
 

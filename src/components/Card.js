@@ -13,7 +13,7 @@ class Card {
       .cloneNode(true);
   }
 
-  _setEventListeners() {
+  _setEventListeners(data) {
     this._element
       .querySelector(".card__like-button")
       .addEventListener("click", () => this._handleLikeButton());
@@ -25,7 +25,7 @@ class Card {
     this._element
       .querySelector(".card__image")
       .addEventListener("click", () => {
-        this._handleImageClick();
+        this._handleImageClick(this._name, this._link);
       });
   }
 

@@ -7,14 +7,13 @@
     <meta name="author" content="Lisa Drake" />
     <meta name="keywords" content="travel, photography" />
     <title>Around the U.S.</title>
-    <link href="./pages/index.css" rel="stylesheet" />
   </head>
   <body class="page">
     <div class="page__content">
       <header class="header page__section">
         <img
           class="header__image"
-          src="./images/logo.svg"
+          src="<%=require('./images/logo.svg')%>"
           alt="Around the U.S. logo"
         />
       </header>
@@ -22,7 +21,7 @@
         <section class="profile page__section">
           <img
             class="profile__image"
-            src="./images/jacques-cousteau.jpg"
+            src="<%=require('./images/jacques-cousteau.jpg')%>"
             alt="avatar photo"
           />
           <div class="profile__info">
@@ -113,7 +112,7 @@
               type="text"
               class="modal__input"
               id="card-title-input"
-              name="title"
+              name="name"
               placeholder="Title"
               minlength="1"
               maxlength="30"
@@ -126,7 +125,7 @@
               type="url"
               class="modal__input"
               id="card-image-input"
-              name="url"
+              name="link"
               placeholder="Image link"
               required
             />
@@ -172,6 +171,5 @@
         </div>
       </li>
     </template>
-    <script type="module" src="./pages/index.js" defer></script>
   </body>
 </html>

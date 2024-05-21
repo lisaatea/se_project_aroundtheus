@@ -80,8 +80,8 @@ const renderCard = (cardData) => {
   const cardElement = new Card(
     cardData,
     selectors.cardTemplate,
-    handleImageClick,
-    handleDeleteClick
+    handleImageClick
+    // handleDeleteClick
     // handleLikeClick
   );
   cardSection.addItem(cardElement.getView());

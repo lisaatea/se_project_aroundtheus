@@ -1,0 +1,17 @@
+import Popup from "./Popup.js";
+
+export default class PopupWithConfirm extends Popup {
+  constructor(popupSelector, handleDeleteClick) {
+    super({ popupSelector });
+    this._popupForm = this._popupElement.querySelector(".modal__form");
+    this._handleDeleteClick = handleDeleteClick;
+  }
+
+  setEventListeners() {
+    super.setEventListeners();
+    this._popupForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      this._handleDeleteClick();
+    });
+  }
+}

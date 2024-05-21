@@ -64,7 +64,7 @@ profileEditButton.addEventListener("click", () => {
 
 const editProfilePopup = new PopupWithForm(profileEditModal, (data) => {
   api.updateUserInfo(data).then((data) => {
-    userInfo.setUserInfo(data);
+    userInfo.setUserInfo(data.name, data.about);
     editProfilePopup.close();
     editFormValidator.toggleButtonState();
   });

@@ -38,6 +38,10 @@
   width: auto;
 }
 
+.modal__delete-card {
+  padding-top: 34px;
+}
+
 .modal__close-button {
   position: absolute;
   bottom: calc(100% + 5px);
@@ -117,6 +121,10 @@
 .modal__save-button:hover {
   opacity: 0.8;
   cursor: pointer;
+}
+
+.modal__confirm-delete {
+  margin-top: 14px;
 }
 
 .modal__image {

@@ -50,7 +50,7 @@ export default class Api {
     }).then((res) => this._checkResponse(res));
   }
 
-  removeLikeCard(cardId) {
+  removeLike(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: "DELETE",
       headers: this._headers,
@@ -68,12 +68,12 @@ export default class Api {
     }).then((res) => this._checkResponse(res));
   }
 
-  setUserAvatar(userURL) {
+  setUserAvatar(data) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
-        avatar: userURL,
+        avatar: data.link,
       }),
     }).then((res) => this._checkResponse(res));
   }

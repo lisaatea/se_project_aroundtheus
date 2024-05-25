@@ -9,7 +9,7 @@ class Card {
     this._name = data.name;
     this._link = data.link;
     this._id = data._id;
-    this._isLiked = data.isLiked;
+    this.isLiked = data.isLiked;
     this._handleDeleteClick = handleDeleteClick;
     this._handleLikeClick = handleLikeClick;
     this._cardSelector = cardSelector;
@@ -46,7 +46,7 @@ class Card {
   }
 
   _setLikes() {
-    if (this._isLiked) {
+    if (this.isLiked) {
       this._element
         .querySelector(".card__like-button")
         .classList.add("card__like-button_active");

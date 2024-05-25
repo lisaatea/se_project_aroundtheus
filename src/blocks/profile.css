@@ -16,25 +16,21 @@
   position: relative;
 }
 
-.profile__image-overlay {
+.profile__image-button {
   position: absolute;
   visibility: hidden;
   top: 35%;
   left: 35%;
   height: 26px;
   width: 26px;
+  padding: 0;
   background: transparent;
   background-image: url(../images/pencil.svg);
   border-style: none;
   cursor: pointer;
 }
 
-.profile__image-button {
-  background: transparent;
-  border-style: none;
-}
-
-.profile__image-container:hover .profile__image-overlay {
+.profile__image-container:hover .profile__image-button {
   visibility: visible;
 }
 

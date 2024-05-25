@@ -10,7 +10,6 @@ import { selectors, validationSettings } from "../utils/constants.js";
 import Api from "../components/Api.js";
 import PopupWithConfirm from "../components/PopupWithConfirm.js";
 
-/**API */
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
@@ -18,8 +17,6 @@ const api = new Api({
     "Content-Type": "application/json",
   },
 });
-
-/**Page Elements */
 
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
@@ -40,7 +37,6 @@ const avatarEditButton = document.querySelector("#profile-image-button");
 const avatarEditForm = avatarEditModal.querySelector(".modal__form");
 const avatar = document.querySelector(".profile__image");
 
-/** Load */
 const userInfo = new UserInfo(profileTitle, profileDescription, avatar);
 let cardSection;
 
@@ -56,8 +52,6 @@ api.getAppInfo().then(([cards, user]) => {
   userInfo.setUserInfo(user.name, user.about);
   userInfo.setAvatar(user.avatar);
 });
-
-/** Profile */
 
 profileEditButton.addEventListener("click", () => {
   const userData = userInfo.getUserInfo();
@@ -77,7 +71,6 @@ const editProfilePopup = new PopupWithForm(profileEditModal, (data) => {
 });
 editProfilePopup.setEventListeners();
 
-/** Cards */
 addNewCardButton.addEventListener("click", () => {
   addCardPopup.open();
 });
@@ -104,8 +97,6 @@ const addCardPopup = new PopupWithForm(addCardModal, (data) => {
 });
 addCardPopup.setEventListeners();
 
-/** Image */
-
 function handleImageClick(name, link) {
   previewImagePopup.open(name, link);
 }
@@ -113,7 +104,6 @@ function handleImageClick(name, link) {
 const previewImagePopup = new PopupWithImage(imageModal, handleImageClick);
 previewImagePopup.setEventListeners();
 
-/** Likes */
 function handleLikeClick(card) {
   if (card.isLiked) {
     api.removeLike(card._id).then(() => {
@@ -125,8 +115,6 @@ function handleLikeClick(card) {
     });
   }
 }
-
-/** Delete */
 
 const deleteCardPopup = new PopupWithConfirm(deleteCardModal);
 deleteCardPopup.setEventListeners();
@@ -143,8 +131,6 @@ function handleDeleteClick(card) {
   });
 }
 
-/** Avatar */
-
 avatarEditButton.addEventListener("click", () => {
   editAvatarPopup.open();
 });
@@ -159,8 +145,6 @@ const editAvatarPopup = new PopupWithForm(avatarEditModal, (data) => {
   });
 });
 editAvatarPopup.setEventListeners();
-
-// /**Form Validation */
 
 const editFormValidator = new FormValidator(
   validationSettings,

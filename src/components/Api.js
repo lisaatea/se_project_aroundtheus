@@ -8,9 +8,7 @@ export default class Api {
     if (res.ok) {
       return res.json();
     }
-    return Promise.reject(`Error: ${res.status}`).catch((err) => {
-      console.error(err);
-    });
+    return Promise.reject(`Error: ${res.status}`);
   }
 
   getInitialCards() {

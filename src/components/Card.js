@@ -24,36 +24,28 @@ class Card {
   }
 
   _setEventListeners() {
-    this._element
-      .querySelector(".card__like-button")
-      .addEventListener("click", () => this._handleLikeClick(this));
+    this._likeButton.addEventListener("click", () =>
+      this._handleLikeClick(this)
+    );
 
-    this._element
-      .querySelector(".card__delete-button")
-      .addEventListener("click", () => this._handleDeleteClick(this));
+    this._deleteButton.addEventListener("click", () =>
+      this._handleDeleteClick(this)
+    );
 
-    this._element
-      .querySelector(".card__image")
-      .addEventListener("click", () => {
-        this._handleImageClick(this._name, this._link);
-      });
+    this._cardImage.addEventListener("click", () => {
+      this._handleImageClick(this._name, this._link);
+    });
   }
 
   handleLikeButton() {
-    this._element
-      .querySelector(".card__like-button")
-      .classList.toggle("card__like-button_active");
+    this._likeButton.classList.toggle("card__like-button_active");
   }
 
   _setLikes() {
     if (this.isLiked) {
-      this._element
-        .querySelector(".card__like-button")
-        .classList.add("card__like-button_active");
+      this._likeButton.classList.add("card__like-button_active");
     } else {
-      this._element
-        .querySelector(".card__like-button")
-        .classList.remove("card__like-button_active");
+      this._likeButton.classList.remove("card__like-button_active");
     }
   }
 
@@ -64,11 +56,17 @@ class Card {
 
   getView() {
     this._element = this._getTemplate();
+
+    this._likeButton = this._element.querySelector(".card__like-button");
+    this._deleteButton = this._element.querySelector(".card__delete-button");
+    this._cardImage = this._element.querySelector(".card__image");
+    this._cardTitle = this._element.querySelector(".card__title");
+
     this._setEventListeners();
 
-    this._element.querySelector(".card__image").src = this._link;
-    this._element.querySelector(".card__image").alt = this._name;
-    this._element.querySelector(".card__title").textContent = this._name;
+    this._cardImage.src = this._link;
+    this._cardImage.alt = this._name;
+    this._cardTitle.textContent = this._name;
 
     this._setLikes();
 

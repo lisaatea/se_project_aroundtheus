@@ -26,32 +26,37 @@ const profileDescriptionInput = document.querySelector(
   "#profile-description-input"
 );
 const profileDescription = document.querySelector("#profile-description");
-const profileEditForm = profileEditModal.querySelector(".modal__form");
+const profileEditForm = document.forms["profile-edit-form"];
 const addNewCardButton = document.querySelector(".profile__add-button");
 const addCardModal = document.querySelector("#add-card-modal");
-const addCardForm = addCardModal.querySelector(".modal__form");
+const addCardForm = document.forms["add-card-form"];
 const deleteCardModal = document.querySelector("#delete-card-modal");
 const imageModal = document.querySelector("#image-preview");
 const avatarEditModal = document.querySelector("#avatar-edit-modal");
 const avatarEditButton = document.querySelector("#profile-image-button");
-const avatarEditForm = avatarEditModal.querySelector(".modal__form");
+const avatarEditForm = document.forms["avatar-edit-form"];
 const avatar = document.querySelector(".profile__image");
 
 const userInfo = new UserInfo(profileTitle, profileDescription, avatar);
 let cardSection;
 
-api.getAppInfo().then(([cards, user]) => {
-  cardSection = new Section(
-    {
-      renderer: renderCard,
-      items: cards,
-    },
-    selectors.cardSection
-  );
-  cardSection.renderItems();
-  userInfo.setUserInfo(user.name, user.about);
-  userInfo.setAvatar(user.avatar);
-});
+api
+  .getAppInfo()
+  .then(([cards, user]) => {
+    cardSection = new Section(
+      {
+        renderer: renderCard,
+        items: cards,
+      },
+      selectors.cardSection
+    );
+    cardSection.renderItems();
+    userInfo.setUserInfo(user.name, user.about);
+    userInfo.setAvatar(user.avatar);
+  })
+  .catch((err) => {
+    console.error(err);
+  });
 
 profileEditButton.addEventListener("click", () => {
   const userData = userInfo.getUserInfo();
@@ -62,39 +67,59 @@ profileEditButton.addEventListener("click", () => {
 
 const editProfilePopup = new PopupWithForm(profileEditModal, (data) => {
   editProfilePopup.saving(true);
-  api.updateUserInfo(data).then((data) => {
-    userInfo.setUserInfo(data.name, data.about);
-    editProfilePopup.saving(false);
-    editProfilePopup.close();
-    editFormValidator.toggleButtonState();
-  });
+  api
+    .updateUserInfo(data)
+    .then((data) => {
+      userInfo.setUserInfo(data.name, data.about);
+      editProfilePopup.close();
+      editFormValidator.toggleButtonState();
+    })
+    .catch((err) => {
+      console.error(err);
+    })
+    .finally(() => {
+      editProfilePopup.saving(false);
+    });
 });
+
 editProfilePopup.setEventListeners();
 
 addNewCardButton.addEventListener("click", () => {
   addCardPopup.open();
 });
 
-const renderCard = (cardData) => {
-  const cardElement = new Card(
-    cardData,
+function createCard(item) {
+  const card = new Card(
+    item,
     selectors.cardTemplate,
     handleImageClick,
     handleDeleteClick,
     handleLikeClick
   );
-  cardSection.addItem(cardElement.getView());
+  return card.getView();
+}
+const renderCard = (cardData) => {
+  const cardElement = createCard(cardData);
+  cardSection.addItem(cardElement);
 };
 
 const addCardPopup = new PopupWithForm(addCardModal, (data) => {
   addCardPopup.saving(true);
-  api.addCard(data).then((data) => {
-    addCardPopup.saving(false);
-    renderCard(data);
-    addCardPopup.close();
-    addFormValidator.toggleButtonState();
-  });
+  api
+    .addCard(data)
+    .then((data) => {
+      renderCard(data);
+      addCardPopup.close();
+      addFormValidator.toggleButtonState();
+    })
+    .catch((err) => {
+      console.error(err);
+    })
+    .finally(() => {
+      addCardPopup.saving(false);
+    });
 });
+
 addCardPopup.setEventListeners();
 
 function handleImageClick(name, link) {
@@ -106,13 +131,23 @@ previewImagePopup.setEventListeners();
 
 function handleLikeClick(card) {
   if (card.isLiked) {
-    api.removeLike(card._id).then(() => {
-      card.handleLikeButton();
-    });
+    api
+      .removeLike(card._id)
+      .then(() => {
+        card.handleLikeButton();
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   } else {
-    api.likeCard(card._id).then(() => {
-      card.handleLikeButton();
-    });
+    api
+      .likeCard(card._id)
+      .then(() => {
+        card.handleLikeButton();
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   }
 }
 
@@ -123,11 +158,18 @@ function handleDeleteClick(card) {
   deleteCardPopup.open();
   deleteCardPopup.setSubmitAction(() => {
     deleteCardPopup.deleting(true);
-    api.deleteCard(card._id).then(() => {
-      deleteCardPopup.deleting(false);
-      card.removeCard();
-      deleteCardPopup.close();
-    });
+    api
+      .deleteCard(card._id)
+      .then(() => {
+        card.removeCard();
+        deleteCardPopup.close();
+      })
+      .catch((err) => {
+        console.error(err);
+      })
+      .finally(() => {
+        deleteCardPopup.deleting(false);
+      });
   });
 }
 
@@ -137,13 +179,21 @@ avatarEditButton.addEventListener("click", () => {
 
 const editAvatarPopup = new PopupWithForm(avatarEditModal, (data) => {
   editAvatarPopup.saving(true);
-  api.setUserAvatar(data).then((data) => {
-    editAvatarPopup.saving(false);
-    userInfo.setAvatar(data.avatar);
-    editAvatarPopup.close();
-    avatarFormValidator.toggleButtonState();
-  });
+  api
+    .setUserAvatar(data)
+    .then((data) => {
+      userInfo.setAvatar(data.avatar);
+      editAvatarPopup.close();
+      avatarFormValidator.toggleButtonState();
+    })
+    .catch((err) => {
+      console.error(err);
+    })
+    .finally(() => {
+      editAvatarPopup.saving(false);
+    });
 });
+
 editAvatarPopup.setEventListeners();
 
 const editFormValidator = new FormValidator(
@@ -160,6 +210,3 @@ const avatarFormValidator = new FormValidator(
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();
 avatarFormValidator.enableValidation();
-editFormValidator.toggleButtonState();
-addFormValidator.toggleButtonState();
-avatarFormValidator.toggleButtonState();

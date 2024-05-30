@@ -12,6 +12,32 @@
   margin-right: 30px;
 }
 
+.profile__image-container {
+  position: relative;
+}
+
+.profile__image-button {
+  position: absolute;
+  visibility: hidden;
+  top: 35%;
+  left: 35%;
+  height: 26px;
+  width: 26px;
+  padding: 0;
+  background: transparent;
+  background-image: url(../images/pencil.svg);
+  border-style: none;
+  cursor: pointer;
+}
+
+.profile__image-container:hover .profile__image-button {
+  visibility: visible;
+}
+
+.profile__image-container:hover .profile__image {
+  opacity: 0.6;
+}
+
 .profile__info {
   display: grid;
   grid-template-areas:
@@ -44,7 +70,6 @@
   height: 24px;
   grid-area: button;
   padding: 0;
-  border-color: white;
   border: 1px;
 }
 

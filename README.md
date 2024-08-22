@@ -9,7 +9,7 @@ This front-end development project was completed for the Software Engineering pr
 - Responsive Layout
 - Interactive Modal Elements
 - Data Validation
-- API intergration
+- API Intergration
 
 ## Technologies used
 

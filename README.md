@@ -17,6 +17,8 @@ This front-end development project was completed for the Software Engineering pr
 - CSS3 (including Grid Layout and Flexbox)
 - JavaScript
 
+## Gallery
+
 ![project fullscreen image](./src/images/demo/fullscreen.png)
 ![validation sample image](./src/images/demo/validation.png)
 
